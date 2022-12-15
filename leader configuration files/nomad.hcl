@@ -8,6 +8,7 @@ client {
 server {
   enabled = true
   bootstrap_expect = 1
+  # bootstrap_expect = 3 for HA
 }
 datacenter = "ctera"
 data_dir = "/opt/nomad/data"
