@@ -7,6 +7,7 @@ data_dir   = "/opt/nomad/data"
 
 client {
   enabled = true
+  servers = ["<server-ip>",...]
 }
 name = "nomad2"
 log_level = "INFO"
