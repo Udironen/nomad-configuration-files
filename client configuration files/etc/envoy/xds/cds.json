@@ -1,0 +1,289 @@
+
+
+{
+    "resources": [
+        {
+            "@type": "type.googleapis.com/envoy.config.cluster.v3.Cluster",
+            "connect_timeout": "1s",
+            "dns_resolution_config": {
+                "resolvers": [
+                    {
+                        "socket_address": {
+                            "address": "127.0.0.1",
+                            "port_value": 8600
+                        }
+                    }
+                ]
+            },
+            "lb_policy": "round_robin",
+            "load_assignment": {
+                "cluster_name": "front_cluster_kafka_broker_1",
+                "endpoints": [
+                    {
+                        "lb_endpoints": [
+                            {
+                                "endpoint": {
+                                    "address": {
+                                        "socket_address": {
+                                            "address": "kafka-1.service.ctera",
+                                            "port_value": 19092
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "front_cluster_kafka_broker_1",
+            "transport_socket": {
+                "name": "envoy.transport_sockets.tls",
+                "typed_config": {
+                    "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext",
+                    "common_tls_context": {
+                        "tls_certificate_sds_secret_configs": {
+                            "name": "tls_sds",
+                            "sds_config": {
+                                "path": "/etc/envoy/xds/sds-tls-certificate.json",
+                                "resource_api_version": "V3"
+                            }
+                        },
+                        "validation_context_sds_secret_config": {
+                            "name": "validation_context_sds",
+                            "sds_config": {
+                                "path": "/etc/envoy/xds/sds-validation-context.json",
+                                "resource_api_version": "V3"
+                            }
+                        }
+                    }
+                }
+            },
+            "type": "strict_dns"
+        },
+        {
+            "@type": "type.googleapis.com/envoy.config.cluster.v3.Cluster",
+            "connect_timeout": "1s",
+            "dns_resolution_config": {
+                "resolvers": [
+                    {
+                        "socket_address": {
+                            "address": "127.0.0.1",
+                            "port_value": 8600
+                        }
+                    }
+                ]
+            },
+            "lb_policy": "round_robin",
+            "load_assignment": {
+                "cluster_name": "secure_kafka_broker_1",
+                "endpoints": [
+                    {
+                        "lb_endpoints": [
+                            {
+                                "endpoint": {
+                                    "address": {
+                                        "socket_address": {
+                                            "address": "kafka-1.service.ctera",
+                                            "port_value": 39092
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "secure_kafka_broker_1",
+            "type": "strict_dns"
+        },
+        {
+            "@type": "type.googleapis.com/envoy.config.cluster.v3.Cluster",
+            "connect_timeout": "1s",
+            "dns_resolution_config": {
+                "resolvers": [
+                    {
+                        "socket_address": {
+                            "address": "127.0.0.1",
+                            "port_value": 8600
+                        }
+                    }
+                ]
+            },
+            "lb_policy": "round_robin",
+            "load_assignment": {
+                "cluster_name": "front_cluster_kafka_broker_2",
+                "endpoints": [
+                    {
+                        "lb_endpoints": [
+                            {
+                                "endpoint": {
+                                    "address": {
+                                        "socket_address": {
+                                            "address": "kafka-2.service.ctera",
+                                            "port_value": 19092
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "front_cluster_kafka_broker_2",
+            "transport_socket": {
+                "name": "envoy.transport_sockets.tls",
+                "typed_config": {
+                    "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext",
+                    "common_tls_context": {
+                        "tls_certificate_sds_secret_configs": {
+                            "name": "tls_sds",
+                            "sds_config": {
+                                "path": "/etc/envoy/xds/sds-tls-certificate.json",
+                                "resource_api_version": "V3"
+                            }
+                        },
+                        "validation_context_sds_secret_config": {
+                            "name": "validation_context_sds",
+                            "sds_config": {
+                                "path": "/etc/envoy/xds/sds-validation-context.json",
+                                "resource_api_version": "V3"
+                            }
+                        }
+                    }
+                }
+            },
+            "type": "strict_dns"
+        },
+        {
+            "@type": "type.googleapis.com/envoy.config.cluster.v3.Cluster",
+            "connect_timeout": "1s",
+            "dns_resolution_config": {
+                "resolvers": [
+                    {
+                        "socket_address": {
+                            "address": "127.0.0.1",
+                            "port_value": 8600
+                        }
+                    }
+                ]
+            },
+            "lb_policy": "round_robin",
+            "load_assignment": {
+                "cluster_name": "secure_kafka_broker_2",
+                "endpoints": [
+                    {
+                        "lb_endpoints": [
+                            {
+                                "endpoint": {
+                                    "address": {
+                                        "socket_address": {
+                                            "address": "kafka-2.service.ctera",
+                                            "port_value": 39092
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "secure_kafka_broker_2",
+            "type": "strict_dns"
+        },
+        {
+            "@type": "type.googleapis.com/envoy.config.cluster.v3.Cluster",
+            "connect_timeout": "1s",
+            "dns_resolution_config": {
+                "resolvers": [
+                    {
+                        "socket_address": {
+                            "address": "127.0.0.1",
+                            "port_value": 8600
+                        }
+                    }
+                ]
+            },
+            "lb_policy": "round_robin",
+            "load_assignment": {
+                "cluster_name": "front_cluster_kafka_broker_3",
+                "endpoints": [
+                    {
+                        "lb_endpoints": [
+                            {
+                                "endpoint": {
+                                    "address": {
+                                        "socket_address": {
+                                            "address": "kafka-3.service.ctera",
+                                            "port_value": 19092
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "front_cluster_kafka_broker_3",
+            "transport_socket": {
+                "name": "envoy.transport_sockets.tls",
+                "typed_config": {
+                    "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext",
+                    "common_tls_context": {
+                        "tls_certificate_sds_secret_configs": {
+                            "name": "tls_sds",
+                            "sds_config": {
+                                "path": "/etc/envoy/xds/sds-tls-certificate.json",
+                                "resource_api_version": "V3"
+                            }
+                        },
+                        "validation_context_sds_secret_config": {
+                            "name": "validation_context_sds",
+                            "sds_config": {
+                                "path": "/etc/envoy/xds/sds-validation-context.json",
+                                "resource_api_version": "V3"
+                            }
+                        }
+                    }
+                }
+            },
+            "type": "strict_dns"
+        },
+        {
+            "@type": "type.googleapis.com/envoy.config.cluster.v3.Cluster",
+            "connect_timeout": "1s",
+            "dns_resolution_config": {
+                "resolvers": [
+                    {
+                        "socket_address": {
+                            "address": "127.0.0.1",
+                            "port_value": 8600
+                        }
+                    }
+                ]
+            },
+            "lb_policy": "round_robin",
+            "load_assignment": {
+                "cluster_name": "secure_kafka_broker_3",
+                "endpoints": [
+                    {
+                        "lb_endpoints": [
+                            {
+                                "endpoint": {
+                                    "address": {
+                                        "socket_address": {
+                                            "address": "kafka-3.service.ctera",
+                                            "port_value": 39092
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "name": "secure_kafka_broker_3",
+            "type": "strict_dns"
+        }
+    ],
+    "version_info": "0"
+}

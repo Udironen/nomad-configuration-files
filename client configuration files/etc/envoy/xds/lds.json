@@ -1,0 +1,198 @@
+
+
+{
+    "resources": [
+        {
+            "@type": "type.googleapis.com/envoy.config.listener.v3.Listener",
+            "address": {
+                "socket_address": {
+                    "address": "127.0.0.1",
+                    "port_value": 9093
+                }
+            },
+            "filter_chains": [
+                {
+                    "filters": [
+                        {
+                            "name": "envoy.filters.network.kafka_broker",
+                            "typed_config": {
+                                "@type": "type.googleapis.com/envoy.extensions.filters.network.kafka_broker.v3.KafkaBroker",
+                                "stat_prefix": "front_cluster_kafka_broker_1_kafka"
+                            }
+                        },
+                        {
+                            "name": "envoy.filters.network.tcp_proxy",
+                            "typed_config": {
+                                "@type": "type.googleapis.com/envoy.extensions.filters.network.tcp_proxy.v3.TcpProxy",
+                                "cluster": "front_cluster_kafka_broker_1",
+                                "stat_prefix": "front_cluster_kafka_broker_1_tcp"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "name": "front_listener_kafka_broker_1"
+        },
+        {
+            "@type": "type.googleapis.com/envoy.config.listener.v3.Listener",
+            "address": {
+                "socket_address": {
+                    "address": "127.0.0.1",
+                    "port_value": 9094
+                }
+            },
+            "filter_chains": [
+                {
+                    "filters": [
+                        {
+                            "name": "envoy.filters.network.kafka_broker",
+                            "typed_config": {
+                                "@type": "type.googleapis.com/envoy.extensions.filters.network.kafka_broker.v3.KafkaBroker",
+                                "stat_prefix": "front_cluster_kafka_broker_2_kafka"
+                            }
+                        },
+                        {
+                            "name": "envoy.filters.network.tcp_proxy",
+                            "typed_config": {
+                                "@type": "type.googleapis.com/envoy.extensions.filters.network.tcp_proxy.v3.TcpProxy",
+                                "cluster": "front_cluster_kafka_broker_2",
+                                "stat_prefix": "front_cluster_kafka_broker_2_tcp"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "name": "front_listener_kafka_broker_2"
+        },
+        {
+            "@type": "type.googleapis.com/envoy.config.listener.v3.Listener",
+            "address": {
+                "socket_address": {
+                    "address": "127.0.0.1",
+                    "port_value": 9095
+                }
+            },
+            "filter_chains": [
+                {
+                    "filters": [
+                        {
+                            "name": "envoy.filters.network.kafka_broker",
+                            "typed_config": {
+                                "@type": "type.googleapis.com/envoy.extensions.filters.network.kafka_broker.v3.KafkaBroker",
+                                "stat_prefix": "front_cluster_kafka_broker_3_kafka"
+                            }
+                        },
+                        {
+                            "name": "envoy.filters.network.tcp_proxy",
+                            "typed_config": {
+                                "@type": "type.googleapis.com/envoy.extensions.filters.network.tcp_proxy.v3.TcpProxy",
+                                "cluster": "front_cluster_kafka_broker_3",
+                                "stat_prefix": "front_cluster_kafka_broker_3_tcp"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "name": "front_listener_kafka_broker_3"
+        },
+        {
+            "@type": "type.googleapis.com/envoy.config.listener.v3.Listener",
+            "address": {
+                "socket_address": {
+                    "address": "0.0.0.0",
+                    "port_value": 8443
+                }
+            },
+            "filter_chains": [
+                {
+                    "filter_chain_match": {
+                        "server_names": "kafka-1.service.ctera",
+                        "transport_protocol": "tls"
+                    },
+                    "filters": [
+                        {
+                            "name": "envoy.filters.network.tcp_proxy",
+                            "typed_config": {
+                                "@type": "type.googleapis.com/envoy.extensions.filters.network.tcp_proxy.v3.TcpProxy",
+                                "cluster": "secure_kafka_broker_1",
+                                "stat_prefix": "secure_kafka_broker_1_tcp"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "filter_chain_match": {
+                        "server_names": "kafka-2.service.ctera",
+                        "transport_protocol": "tls"
+                    },
+                    "filters": [
+                        {
+                            "name": "envoy.filters.network.tcp_proxy",
+                            "typed_config": {
+                                "@type": "type.googleapis.com/envoy.extensions.filters.network.tcp_proxy.v3.TcpProxy",
+                                "cluster": "secure_kafka_broker_2",
+                                "stat_prefix": "secure_kafka_broker_2_tcp"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "filter_chain_match": {
+                        "server_names": "kafka-3.service.ctera",
+                        "transport_protocol": "tls"
+                    },
+                    "filters": [
+                        {
+                            "name": "envoy.filters.network.tcp_proxy",
+                            "typed_config": {
+                                "@type": "type.googleapis.com/envoy.extensions.filters.network.tcp_proxy.v3.TcpProxy",
+                                "cluster": "secure_kafka_broker_3",
+                                "stat_prefix": "secure_kafka_broker_3_tcp"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "filter_chain_match": {
+                        "server_names": "kafka-bootstrap.service.ctera",
+                        "transport_protocol": "tls"
+                    },
+                    "filters": [
+                        {
+                            "name": "envoy.filters.network.tcp_proxy",
+                            "typed_config": {
+                                "@type": "type.googleapis.com/envoy.extensions.filters.network.tcp_proxy.v3.TcpProxy",
+                                "cluster": "secure_kafka_bootstrap",
+                                "stat_prefix": "secure_kafka_bootstrap_tcp"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "filter_chain_match": {
+                        "server_names": "messaging-logstash.service.ctera",
+                        "transport_protocol": "tls"
+                    },
+                    "filters": [
+                        {
+                            "name": "envoy.filters.network.tcp_proxy",
+                            "typed_config": {
+                                "@type": "type.googleapis.com/envoy.extensions.filters.network.tcp_proxy.v3.TcpProxy",
+                                "cluster": "front_cluster_logstash",
+                                "stat_prefix": "front_cluster_logstash_tcp"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "listener_filters": [
+                {
+                    "name": "envoy.filters.listener.tls_inspector",
+                    "typed_config": {}
+                }
+            ],
+            "name": "multiplex"
+        }
+    ],
+    "version_info": "0"
+}
