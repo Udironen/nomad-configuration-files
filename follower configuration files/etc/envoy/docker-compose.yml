@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  envoy:
+    image: envoyproxy/envoy-contrib:v1.20.6
+    restart: always
+    network_mode: host
+    command: /usr/local/bin/envoy -c /etc/envoy/envoy.yaml
+    volumes:
+      - /usr/local/lib/ctera/work/microservices/etc/envoy/envoy.yml:/etc/envoy/envoy.yaml
+      - /usr/local/lib/ctera/work/microservices/etc/envoy/xds:/etc/envoy/xds
+      - /usr/local/lib/ctera/work/microservices/certs:/etc/envoy/certs
+    environment:
+      COMPOSE_HTTP_TIMEOUT: 120
