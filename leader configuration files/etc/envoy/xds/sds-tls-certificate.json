@@ -1,0 +1,20 @@
+
+
+{
+  "version_info": "0",
+  "resources": [
+    {
+    "@type": "type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.Secret",
+    "name": "tls_sds",
+    "tls_certificate": {
+        "certificate_chain": {
+            "filename": "/etc/envoy/certs/certificate.crt"
+        },
+        "private_key": {
+            "filename": "/etc/envoy/certs/private.key"
+        }
+    }
+}
+
+  ]
+}
